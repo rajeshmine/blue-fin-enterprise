@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import ProductImageGrid from "./ProductImageGrid";
 import type { ProductSubcategory, ProductCategory } from "@/lib/products";
 import { getProductHref } from "@/lib/products";
+import { PRODUCT_DETAIL } from "@/lib/content";
 
 type ProductPageClientProps = {
   slug: string;
@@ -90,7 +91,7 @@ export default function ProductPageClient({
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-950/50 border border-gray-100 dark:border-gray-700 p-4 sm:p-6 lg:sticky lg:top-24"
           >
             <h3 className="font-bold text-primary mb-4 text-lg">
-              More in {category.label}
+              {PRODUCT_DETAIL.sidebar.moreIn} {category.label}
             </h3>
             <ul className="space-y-1">
               {category.submenu.map((sub) => (
@@ -112,7 +113,7 @@ export default function ProductPageClient({
               href="/products"
               className="mt-6 block text-center py-3 px-4 rounded-xl border-2 border-primary text-primary font-semibold hover:bg-blue-950 dark:hover:bg-primary hover:text-white transition-all duration-300"
             >
-              View All Products
+              {PRODUCT_DETAIL.sidebar.viewAllProducts}
             </Link>
           </motion.div>
         </aside>
@@ -126,9 +127,7 @@ export default function ProductPageClient({
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-950/50 border border-gray-100 dark:border-gray-700 p-6 sm:p-8"
           >
             <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-              Explore our range of {subcategory.label.toLowerCase()} solutions
-              designed for industrial automation and material handling
-              excellence.
+              {PRODUCT_DETAIL.intro(subcategory.label)}
             </p>
             <ProductImageGrid
               images={productImages}
@@ -145,17 +144,16 @@ export default function ProductPageClient({
             className="mt-6 sm:mt-8 bg-blue-950 dark:bg-primary rounded-2xl p-5 sm:p-6 md:p-8 text-center"
           >
             <h3 className="text-xl font-bold text-white mb-2">
-              Need a custom solution?
+              {PRODUCT_DETAIL.cta.title}
             </h3>
             <p className="text-blue-200/90 mb-6">
-              Get in touch for quotes and tailored {subcategory.label}{" "}
-              solutions.
+              {PRODUCT_DETAIL.cta.description(subcategory.label)}
             </p>
             <Link
               href="/contact"
               className="inline-block bg-accent hover:bg-accent/90 text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-105"
             >
-              Request Quote
+              {PRODUCT_DETAIL.cta.buttonText}
             </Link>
           </motion.div>
         </div>

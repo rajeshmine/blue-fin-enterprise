@@ -7,11 +7,11 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import ThemeScript from "@/components/ThemeScript";
 import { Metadata } from "next";
+import { SITE } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Blue Fin Engineering Enterprises",
-  description:
-    "Leading Manufacturers Of Material Handling & Assembly Solutions",
+  title: SITE.name,
+  description: SITE.description,
 };
 
 const poppins = Poppins({

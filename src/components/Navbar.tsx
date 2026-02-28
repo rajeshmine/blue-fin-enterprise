@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import { productCategories, getProductHref } from "@/lib/products";
 import ThemeToggle from "@/components/ThemeToggle";
+import { NAV, CONTACT, SITE } from "@/lib/content";
 
 type MenuItem = {
   label: string;
@@ -276,8 +277,8 @@ export default function Navbar() {
           {/* Logo + Text */}
           <Link href="/" className="flex items-center gap-2 sm:gap-4 min-w-0 flex-shrink">
             <Image
-              src="/images/logo.png"
-              alt="Blue Fin Engineering Logo"
+              src={CONTACT.logoPath}
+              alt={`${SITE.name} Logo`}
               width={60}
               height={60}
               priority
@@ -285,27 +286,19 @@ export default function Navbar() {
             />
             <div className="flex flex-col leading-tight min-w-0">
               <span className="text-lg sm:text-2xl font-extrabold text-primary tracking-wide truncate">
-                BLUEFIN
+                {NAV.logo.line1}
               </span>
               <span className="text-[10px] sm:text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider truncate max-w-[120px] sm:max-w-none">
-                ENGINEERING ENTERPRISES
+                {NAV.logo.line2}
               </span>
             </div>
           </Link>
 
           {/* Desktop menu */}
           <ul className="hidden md:flex gap-8 text-primary font-medium">
-            <li>
-              <Link href="/" className="hover:text-accent transition">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link href="/#about" className="hover:text-accent transition">
-                About
-              </Link>
-            </li>
-            <li className="relative">
+            {NAV.items.map((item) =>
+              item.href === "/products" ? (
+            <li key={item.href} className="relative">
             <div ref={desktopProductsRef} className="relative">
               <button
                 aria-haspopup="true"
@@ -314,7 +307,7 @@ export default function Navbar() {
                 className="flex items-center gap-1 hover:text-accent transition font-semibold text-primary"
                 type="button"
               >
-                Products
+                {NAV.productsLabel}
                 <svg
                   className={`w-4 h-4 transition-transform ${desktopProductsOpen ? "rotate-180" : ""}`}
                   fill="none"
@@ -335,11 +328,14 @@ export default function Navbar() {
               )}
             </div>
             </li>
-            <li>
-              <Link href="/contact" className="hover:text-accent transition">
-                Contact
+              ) : (
+            <li key={item.href}>
+              <Link href={item.href} className="hover:text-accent transition">
+                {item.label}
               </Link>
             </li>
+              )
+            )}
           </ul>
 
           {/* Theme toggle + Mobile hamburger - flex for proper spacing */}
@@ -394,28 +390,12 @@ export default function Navbar() {
                 aria-label="Mobile navigation"
               >
                 <ul className="flex flex-col gap-0 p-4 pb-6 text-primary font-semibold">
-                  <li>
-                    <Link
-                      href="/"
-                      className="block py-3.5 px-3 -mx-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent active:bg-gray-200 dark:active:bg-gray-700 transition-colors touch-manipulation"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/#about"
-                      className="block py-3.5 px-3 -mx-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent active:bg-gray-200 dark:active:bg-gray-700 transition-colors touch-manipulation"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      About
-                    </Link>
-                  </li>
-                  <li>
+                  {NAV.items.map((item) =>
+                    item.href === "/products" ? (
+                  <li key={item.href}>
                     <div className="pt-1 pb-2">
                       <p className="px-3 py-2 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                        Products
+                        {NAV.productsLabel}
                       </p>
                       <DropdownMenu
                         items={productsMenu}
@@ -428,15 +408,18 @@ export default function Navbar() {
                       />
                     </div>
                   </li>
-                  <li>
+                    ) : (
+                  <li key={item.href}>
                     <Link
-                      href="/contact"
+                      href={item.href}
                       className="block py-3.5 px-3 -mx-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent active:bg-gray-200 dark:active:bg-gray-700 transition-colors touch-manipulation"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      Contact
+                      {item.label}
                     </Link>
                   </li>
+                    )
+                  )}
                 </ul>
               </nav>
             </motion.div>

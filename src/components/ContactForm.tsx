@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import emailjs from "@emailjs/browser";
+import { CONTACT_FORM } from "@/lib/content";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -66,12 +67,12 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
         <label htmlFor="name" className="block text-white/90 text-sm font-medium mb-2">
-          Your Name
+          {CONTACT_FORM.labels.name}
         </label>
         <input
           id="name"
           type="text"
-          placeholder="Enter your name"
+          placeholder={CONTACT_FORM.placeholders.name}
           value={formData.name}
           onChange={handleChange}
           required
@@ -81,12 +82,12 @@ export default function ContactForm() {
       </div>
       <div>
         <label htmlFor="phone" className="block text-white/90 text-sm font-medium mb-2">
-          Mobile Number
+          {CONTACT_FORM.labels.phone}
         </label>
         <input
           id="phone"
           type="tel"
-          placeholder="+91 00000 00000"
+          placeholder={CONTACT_FORM.placeholders.phone}
           value={formData.phone}
           onChange={handleChange}
           required
@@ -96,12 +97,12 @@ export default function ContactForm() {
       </div>
       <div>
         <label htmlFor="email" className="block text-white/90 text-sm font-medium mb-2">
-          Email Address
+          {CONTACT_FORM.labels.email}
         </label>
         <input
           id="email"
           type="email"
-          placeholder="your@email.com"
+          placeholder={CONTACT_FORM.placeholders.email}
           value={formData.email}
           onChange={handleChange}
           required
@@ -111,12 +112,12 @@ export default function ContactForm() {
       </div>
       <div>
         <label htmlFor="message" className="block text-white/90 text-sm font-medium mb-2">
-          Your Message
+          {CONTACT_FORM.labels.message}
         </label>
         <textarea
           id="message"
           rows={4}
-          placeholder="How can we help you?"
+          placeholder={CONTACT_FORM.placeholders.message}
           value={formData.message}
           onChange={handleChange}
           required
@@ -127,12 +128,12 @@ export default function ContactForm() {
 
       {status === "success" && (
         <p className="text-green-400 text-sm font-medium">
-          Thank you! Your request has been submitted. We&apos;ll get back to you shortly.
+          {CONTACT_FORM.successMessage}
         </p>
       )}
       {status === "error" && (
         <p className="text-red-400 text-sm font-medium">
-          Something went wrong. Please try again or contact us directly.
+          {CONTACT_FORM.errorMessage}
         </p>
       )}
 
@@ -141,7 +142,7 @@ export default function ContactForm() {
         disabled={status === "sending"}
         className="w-full py-3.5 sm:py-4 min-h-[48px] bg-accent hover:bg-accent/90 disabled:bg-accent/70 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:cursor-not-allowed touch-manipulation active:scale-[0.98]"
       >
-        {status === "sending" ? "Sending..." : "Submit Request"}
+        {status === "sending" ? CONTACT_FORM.sendingText : CONTACT_FORM.submitText}
       </button>
     </form>
   );

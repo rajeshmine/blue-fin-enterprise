@@ -32,29 +32,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import React from 'react';
-// You can use icons from lucide-react or react-icons
-import { Gem, Users, Truck } from 'lucide-react';
+import { Gem, Users, Truck } from "lucide-react";
+import { FEATURES } from "@/lib/content";
+
+const ICON_MAP = {
+  gem: Gem,
+  users: Users,
+  truck: Truck,
+} as const;
 
 const Features = () => {
-  const features = [
-    {
-      id: 1,
-      title: "Innovative Products",
-      icon: <Gem size={40} className="text-red-600 dark:text-accent" />,
-    },
-    {
-      id: 2,
-      title: "Team Of Experts",
-      icon: <Users size={40} className="text-red-600 dark:text-accent" />,
-    },
-    {
-      id: 3,
-      title: "Strong Supply Chain",
-      icon: <Truck size={40} className="text-red-600 dark:text-accent" />,
-    },
-  ];
-
   return (
     <div className="w-full">
       {/* Dark Navy Background Header */}
@@ -63,25 +50,26 @@ const Features = () => {
       {/* Cards Container */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 -mt-8 sm:-mt-10 md:-mt-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-          {features.map((feature) => (
+          {FEATURES.map((feature) => {
+          const IconComponent = ICON_MAP[feature.iconKey];
+          return (
             <motion.div
               key={feature.id}
               whileHover={{ y: -10 }}
-             
             >
-              <div
-                key={feature.id}
-                className="bg-white dark:bg-gray-800 p-6 sm:p-8 flex flex-col items-center justify-center transition-transform hover:-translate-y-1 shadow-sm dark:shadow-gray-900/50"
-              >
+              <div className="bg-white dark:bg-gray-800 p-6 sm:p-8 flex flex-col items-center justify-center transition-transform hover:-translate-y-1 shadow-sm dark:shadow-gray-900/50">
                 <div className="mb-4">
-                  {feature.icon}
+                  {IconComponent && (
+                    <IconComponent size={40} className="text-red-600 dark:text-accent" />
+                  )}
                 </div>
                 <h3 className="text-[#00153D] dark:text-gray-100 font-bold text-base sm:text-lg text-center uppercase tracking-tight">
                   {feature.title}
                 </h3>
               </div>
             </motion.div>
-          ))}
+          );
+        })}
         </div>
       </div>
     </div>

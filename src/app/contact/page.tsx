@@ -1,21 +1,21 @@
 import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
+import { CONTACT, CONTACT_PAGE } from "@/lib/content";
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Hero header */}
       <section className="bg-blue-900 dark:bg-primary pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div className="h-1 w-14 bg-accent rounded-full shrink-0" />
             <div>
               <h1 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
-                Reach <span className="font-bold text-accent">Blue Fin</span>
+                {CONTACT_PAGE.hero.title} <span className="font-bold text-accent">{CONTACT_PAGE.hero.titleAccent}</span>
               </h1>
               <p className="text-blue-200/90 mt-2 text-sm sm:text-base">
-                Get in touch with our team for inquiries and support
+                {CONTACT_PAGE.hero.subtitle}
               </p>
             </div>
           </div>
@@ -30,25 +30,25 @@ export default function ContactPage() {
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-950/50 border border-gray-100 dark:border-gray-700 p-5 sm:p-6 md:p-8 lg:p-10">
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 mb-6 sm:mb-8">
                 <Image
-                  src="/images/logo.png"
-                  alt="Blue Fin Logo"
+                  src={CONTACT.logoPath}
+                  alt={`${CONTACT_PAGE.card.companyName} Logo`}
                   width={72}
                   height={72}
                   className="shrink-0"
                 />
                 <div className="text-center sm:text-left">
                   <h2 className="text-lg sm:text-xl font-bold text-primary text-center sm:text-left">
-                    Blue Fin Engineering Enterprises
+                    {CONTACT_PAGE.card.companyName}
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">
-                    Material Handling & Assembly Solutions
+                    {CONTACT_PAGE.card.tagline}
                   </p>
                 </div>
               </div>
 
               <div className="space-y-5">
                 <a
-                  href="https://maps.google.com/?q=BLUEFIN+ENGINEERING+ENTERPRISES+Hosur"
+                  href={CONTACT.mapLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex gap-3 sm:gap-4 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors group"
@@ -57,33 +57,33 @@ export default function ContactPage() {
                     <MapPin className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium text-primary text-sm mb-0.5">Office</p>
-                    <p>Classic Homes — Matham Road, Outer Ring Road Hosur.</p>
-                    <p className="mt-1">Factory: Thally road near Swastik packages Karnoor, Hosur — 635110.</p>
+                    <p className="font-medium text-primary text-sm mb-0.5">{CONTACT_PAGE.card.officeLabel}</p>
+                    <p>{CONTACT.address.officeLine1} {CONTACT.address.officeLine2}</p>
+                    <p className="mt-1">{CONTACT.address.factoryLine1} {CONTACT.address.factoryLine2}</p>
                   </div>
                 </a>
                 <a
-                  href="tel:+919486593321"
+                  href={CONTACT.telLink}
                   className="flex gap-3 sm:gap-4 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors group"
                 >
                   <div className="shrink-0 w-10 h-10 rounded-lg bg-primary/5 dark:bg-primary/10 flex items-center justify-center group-hover:bg-accent/10 transition-colors">
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium text-primary text-sm mb-0.5">Call / WhatsApp</p>
-                    <p>+91 94865 93321 / +91 85675 87051</p>
+                    <p className="font-medium text-primary text-sm mb-0.5">{CONTACT_PAGE.card.callLabel}</p>
+                    <p>{CONTACT.phone}</p>
                   </div>
                 </a>
                 <a
-                  href="mailto:bluefinengineeringenterprises@gmail.com"
+                  href={CONTACT.mailLink}
                   className="flex gap-3 sm:gap-4 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors group"
                 >
                   <div className="shrink-0 w-10 h-10 rounded-lg bg-primary/5 dark:bg-primary/10 flex items-center justify-center group-hover:bg-accent/10 transition-colors">
                     <Mail className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium text-primary text-sm mb-0.5">Email</p>
-                    <p>bluefinengineeringenterprises@gmail.com</p>
+                    <p className="font-medium text-primary text-sm mb-0.5">{CONTACT_PAGE.card.emailLabel}</p>
+                    <p>{CONTACT.email}</p>
                   </div>
                 </a>
               </div>
@@ -91,12 +91,12 @@ export default function ContactPage() {
 
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-950/50 border border-gray-100 dark:border-gray-700 overflow-hidden flex-1 min-h-[280px]">
               <div className="p-4 border-b border-gray-100 dark:border-gray-700">
-                <h3 className="font-bold text-primary">Get Directions</h3>
+                <h3 className="font-bold text-primary">{CONTACT.getDirections}</h3>
               </div>
               <div className="h-56 sm:h-64 lg:h-72 w-full min-h-[224px]">
                 <iframe
-                  title="Blue Fin Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.68938502533!2d77.8097464!3d12.733675300000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae70ebc3aaaaab%3A0x39c8851896d6f43e!2sBLUEFIN%20ENGINEERING%20ENTERPRISES!5e0!3m2!1sen!2sin!4v1772262443972!5m2!1sen!2sin"
+                  title={`${CONTACT.companyName} Location`}
+                  src={CONTACT.mapEmbedUrl}
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -113,10 +113,10 @@ export default function ContactPage() {
             <div className="bg-blue-900 dark:bg-primary rounded-2xl shadow-xl dark:shadow-gray-950/50 p-5 sm:p-6 md:p-8 lg:p-10 xl:p-12 h-full flex flex-col">
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-white">
-                  Request a Call Back
+                  {CONTACT_PAGE.form.title}
                 </h2>
                 <p className="text-blue-200/80 mt-2 text-sm">
-                  Fill in your details and we&apos;ll get back to you shortly.
+                  {CONTACT_PAGE.form.subtitle}
                 </p>
               </div>
 
