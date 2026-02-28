@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import { CONTACT, CONTACT_PAGE } from "@/lib/content";
 
@@ -53,8 +53,8 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="flex gap-3 sm:gap-4 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors group"
                 >
-                  <div className="shrink-0 w-10 h-10 rounded-lg bg-primary/5 dark:bg-primary/10 flex items-center justify-center group-hover:bg-accent/10 transition-colors">
-                    <MapPin className="w-5 h-5 text-primary" />
+                  <div className="shrink-0 w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors ring-1 ring-blue-500/20">
+                    <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div>
                     <p className="font-medium text-primary text-sm mb-0.5">{CONTACT_PAGE.card.officeLabel}</p>
@@ -66,8 +66,8 @@ export default function ContactPage() {
                   href={CONTACT.telLink}
                   className="flex gap-3 sm:gap-4 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors group"
                 >
-                  <div className="shrink-0 w-10 h-10 rounded-lg bg-primary/5 dark:bg-primary/10 flex items-center justify-center group-hover:bg-accent/10 transition-colors">
-                    <Phone className="w-5 h-5 text-primary" />
+                  <div className="shrink-0 w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors ring-1 ring-emerald-500/20">
+                    <Phone className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <div>
                     <p className="font-medium text-primary text-sm mb-0.5">{CONTACT_PAGE.card.callLabel}</p>
@@ -75,11 +75,25 @@ export default function ContactPage() {
                   </div>
                 </a>
                 <a
+                  href={`https://wa.me/${CONTACT.whatsapp.number}?text=${encodeURIComponent(CONTACT.whatsapp.defaultMessage)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex gap-3 sm:gap-4 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors group"
+                >
+                  <div className="shrink-0 w-10 h-10 rounded-lg bg-[#25D366]/10 flex items-center justify-center group-hover:bg-[#25D366]/20 transition-colors ring-1 ring-[#25D366]/20">
+                    <MessageCircle className="w-5 h-5 text-[#25D366]" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-primary text-sm mb-0.5">{CONTACT_PAGE.card.whatsappLabel}</p>
+                    <p>{CONTACT.phone}</p>
+                  </div>
+                </a>
+                <a
                   href={CONTACT.mailLink}
                   className="flex gap-3 sm:gap-4 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors group"
                 >
-                  <div className="shrink-0 w-10 h-10 rounded-lg bg-primary/5 dark:bg-primary/10 flex items-center justify-center group-hover:bg-accent/10 transition-colors">
-                    <Mail className="w-5 h-5 text-primary" />
+                  <div className="shrink-0 w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center group-hover:bg-red-500/20 transition-colors ring-1 ring-red-500/20">
+                    <Mail className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <div>
                     <p className="font-medium text-primary text-sm mb-0.5">{CONTACT_PAGE.card.emailLabel}</p>

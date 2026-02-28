@@ -149,8 +149,15 @@ export const CLIENTS = {
 
 export const CTA = {
   title: "Have a Query? Talk To Us",
-  buttonText: "Enquiry Now!",
-  buttonHref: "/contact",
+  primary: {
+    text: "Enquiry Now!",
+    href: "/contact",
+  },
+  whatsapp: {
+    text: "Chat on WhatsApp",
+    href: (number: string, message: string) =>
+      `https://wa.me/${number}?text=${encodeURIComponent(message)}`,
+  },
 } as const;
 
 // =============================================================================
@@ -170,6 +177,10 @@ export const CONTACT = {
   },
   phone: "+91 94865 93321 / +91 85675 87051",
   email: "bluefinengineeringenterprises@gmail.com",
+  whatsapp: {
+    number: "919486593321",
+    defaultMessage: "Hi, I'm interested in your material handling and assembly solutions. Could you please help me?",
+  },
   mapEmbedUrl:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.68938502533!2d77.8097464!3d12.733675300000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae70ebc3aaaaab%3A0x39c8851896d6f43e!2sBLUEFIN%20ENGINEERING%20ENTERPRISES!5e0!3m2!1sen!2sin!4v1772262443972!5m2!1sen!2sin",
   mapLink: "https://maps.google.com/?q=BLUEFIN+ENGINEERING+ENTERPRISES+Hosur",
@@ -202,7 +213,8 @@ export const CONTACT_PAGE = {
     companyName: "Blue Fin Engineering Enterprises",
     tagline: "Material Handling & Assembly Solutions",
     officeLabel: "Office",
-    callLabel: "Call / WhatsApp",
+    callLabel: "Call",
+    whatsappLabel: "WhatsApp",
     emailLabel: "Email",
   },
   form: {
@@ -248,6 +260,7 @@ export const PRODUCT_DETAIL = {
     description: (subcategory: string) =>
       `Get in touch for quotes and tailored ${subcategory} solutions.`,
     buttonText: "Request Quote",
+    whatsappText: "Chat on WhatsApp",
   },
 } as const;
 

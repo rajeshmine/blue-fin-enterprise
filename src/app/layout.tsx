@@ -5,6 +5,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import ThemeScript from "@/components/ThemeScript";
 import { Metadata } from "next";
 import { SITE } from "@/lib/content";
@@ -35,6 +36,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <ScrollToTop />
+        <WhatsAppButton />
       </body>
     </html>
   );

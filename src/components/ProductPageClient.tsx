@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import ProductImageGrid from "./ProductImageGrid";
 import type { ProductSubcategory, ProductCategory } from "@/lib/products";
 import { getProductHref } from "@/lib/products";
-import { PRODUCT_DETAIL } from "@/lib/content";
+import { PRODUCT_DETAIL, CONTACT } from "@/lib/content";
 
 type ProductPageClientProps = {
   slug: string;
@@ -149,12 +150,23 @@ export default function ProductPageClient({
             <p className="text-blue-200/90 mb-6">
               {PRODUCT_DETAIL.cta.description(subcategory.label)}
             </p>
-            <Link
-              href="/contact"
-              className="inline-block bg-accent hover:bg-accent/90 text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-105"
-            >
-              {PRODUCT_DETAIL.cta.buttonText}
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center bg-accent hover:bg-accent/90 text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-105 w-full sm:w-auto"
+              >
+                {PRODUCT_DETAIL.cta.buttonText}
+              </Link>
+              <a
+                href={`https://wa.me/${CONTACT.whatsapp.number}?text=${encodeURIComponent(`Hi, I need a quote for ${subcategory.label}. ${CONTACT.whatsapp.defaultMessage}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-105 w-full sm:w-auto"
+              >
+                <MessageCircle className="h-5 w-5" strokeWidth={2} />
+                {PRODUCT_DETAIL.cta.whatsappText}
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>

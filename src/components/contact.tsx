@@ -49,7 +49,16 @@ const Contact = () => {
               {CONTACT.address.factoryLine1}<br />{CONTACT.address.factoryLine2}
             </p>
             <p className="font-medium">
-              Call / WhatsApp: {CONTACT.phone}
+              <a href={CONTACT.telLink} className="hover:text-accent transition-colors">{CONTACT.phone}</a>
+              {" · "}
+              <a
+                href={`https://wa.me/${CONTACT.whatsapp.number}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#25D366] hover:underline transition-colors"
+              >
+                WhatsApp
+              </a>
             </p>
             <p className="lowercase">{CONTACT.email}</p>
           </div>
