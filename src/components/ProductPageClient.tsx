@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, ChevronRight, Package, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import ProductImageGrid from "./ProductImageGrid";
 import type { ProductSubcategory, ProductCategory } from "@/lib/products";
@@ -25,9 +25,17 @@ export default function ProductPageClient({
 }: ProductPageClientProps) {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-blue-950 dark:bg-primary pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
+      {/* Gradient hero at top - content overlaps on top of it */}
+      <section className="relative bg-gradient-to-br from-blue-950 via-blue-900 to-primary dark:from-primary dark:via-primary dark:to-primary pt-24 sm:pt-28 pb-20 sm:pb-24 px-4 sm:px-6 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 right-20 w-48 h-48 rounded-full bg-accent/10 blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-white/5 blur-2xl" />
+          <svg className="absolute top-0 right-0 w-1/4 h-full opacity-10" viewBox="0 0 120 400" fill="none">
+            <path d="M0 0 L120 80 L120 400 L0 400 Z" fill="currentColor" className="text-white" />
+            <circle cx="90" cy="60" r="40" stroke="currentColor" strokeWidth="1" className="text-accent" fill="none" />
+          </svg>
+        </div>
+        <div className="max-w-7xl mx-auto relative">
           <motion.nav
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -35,11 +43,11 @@ export default function ProductPageClient({
             className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-blue-200/90 mb-4 flex-wrap overflow-x-auto"
           >
             <Link href="/" className="hover:text-white transition-colors">
-              Home
+              {PRODUCT_DETAIL.breadcrumb.home}
             </Link>
             <span>/</span>
             <Link href="/products" className="hover:text-white transition-colors">
-              Products
+              {PRODUCT_DETAIL.breadcrumb.products}
             </Link>
             <span>/</span>
             <Link
@@ -80,8 +88,8 @@ export default function ProductPageClient({
         </div>
       </section>
 
-      {/* Main content */}
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 -mt-6 sm:-mt-8 pb-16 sm:pb-24">
+      {/* Main content - overlaps gradient, sits on top (left sidebar + right product grid) */}
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 -mt-10 sm:-mt-12 pb-16 sm:pb-24 relative z-10">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
         {/* Sidebar */}
         <aside className="lg:col-span-1 order-2 lg:order-1">
@@ -91,29 +99,36 @@ export default function ProductPageClient({
             transition={{ duration: 0.5 }}
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-950/50 border border-gray-100 dark:border-gray-700 p-4 sm:p-6 lg:sticky lg:top-24"
           >
-            <h3 className="font-bold text-primary mb-4 text-lg">
-              {PRODUCT_DETAIL.sidebar.moreIn} {category.label}
-            </h3>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 ring-1 ring-primary/20 flex items-center justify-center">
+                <Package className="w-5 h-5 text-primary" strokeWidth={2} />
+              </div>
+              <h3 className="font-bold text-primary dark:text-white text-lg">
+                {PRODUCT_DETAIL.sidebar.moreIn} {category.label}
+              </h3>
+            </div>
             <ul className="space-y-1">
               {category.submenu.map((sub) => (
                 <li key={sub.slug}>
                   <Link
                     href={getProductHref(sub.slug)}
-                    className={`block px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg transition-all duration-200 touch-manipulation ${
+                    className={`flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg transition-all duration-200 touch-manipulation ${
                       sub.slug === slug
                         ? "bg-accent/10 text-accent font-medium border-l-4 border-accent -ml-1 pl-5"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary border-l-4 border-transparent -ml-1 pl-5"
                     }`}
                   >
-                    {sub.label}
+                    <span className="flex-1">{sub.label}</span>
+                    {sub.slug !== slug && <ChevronRight className="w-4 h-4 shrink-0 opacity-60" strokeWidth={2} />}
                   </Link>
                 </li>
               ))}
             </ul>
             <Link
               href="/products"
-              className="mt-6 block text-center py-3 px-4 rounded-xl border-2 border-primary text-primary font-semibold hover:bg-blue-950 dark:hover:bg-primary hover:text-white transition-all duration-300"
+              className="mt-6 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border-2 border-primary text-primary font-semibold hover:bg-blue-950 dark:hover:bg-primary hover:text-white transition-all duration-300"
             >
+              <FileText className="w-5 h-5" strokeWidth={2} />
               {PRODUCT_DETAIL.sidebar.viewAllProducts}
             </Link>
           </motion.div>
@@ -127,9 +142,14 @@ export default function ProductPageClient({
             transition={{ duration: 0.5, delay: 0.1 }}
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-950/50 border border-gray-100 dark:border-gray-700 p-6 sm:p-8"
           >
-            <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+            <div className="flex items-start gap-3 mb-6">
+              <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 ring-1 ring-primary/20 flex items-center justify-center">
+                <FileText className="w-5 h-5 text-primary" strokeWidth={2} />
+              </div>
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed pt-1">
               {PRODUCT_DETAIL.intro(subcategory.label)}
-            </p>
+              </p>
+            </div>
             <ProductImageGrid
               images={productImages}
               imageFolder={imageFolder}
@@ -142,8 +162,15 @@ export default function ProductPageClient({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 sm:mt-8 bg-blue-950 dark:bg-primary rounded-2xl p-5 sm:p-6 md:p-8 text-center"
+            className="relative mt-6 sm:mt-8 bg-gradient-to-br from-blue-950 via-blue-900 to-primary dark:from-primary dark:via-primary dark:to-primary rounded-2xl p-5 sm:p-6 md:p-8 text-center overflow-hidden"
           >
+            <div className="absolute top-0 right-0 w-1/3 h-full opacity-10">
+              <svg viewBox="0 0 100 200" fill="none" className="w-full h-full">
+                <circle cx="80" cy="40" r="50" stroke="currentColor" strokeWidth="1" className="text-accent" />
+                <circle cx="60" cy="120" r="30" stroke="currentColor" strokeWidth="1" className="text-accent" />
+              </svg>
+            </div>
+            <div className="relative">
             <h3 className="text-xl font-bold text-white mb-2">
               {PRODUCT_DETAIL.cta.title}
             </h3>
@@ -166,6 +193,7 @@ export default function ProductPageClient({
                 <MessageCircle className="h-5 w-5" strokeWidth={2} />
                 {PRODUCT_DETAIL.cta.whatsappText}
               </a>
+            </div>
             </div>
           </motion.div>
         </div>

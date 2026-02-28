@@ -27,14 +27,14 @@ export default function ProductImageGrid({
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
         {images.map((img, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.05 }}
-            className="group relative aspect-square rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 shadow-sm hover:shadow-lg transition-shadow duration-300"
+            className="group relative aspect-square rounded-xl overflow-hidden border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50 shadow-md hover:shadow-xl hover:border-accent/30 transition-all duration-300 ring-1 ring-gray-100 dark:ring-gray-700"
           >
             <button
               type="button"
@@ -47,13 +47,13 @@ export default function ProductImageGrid({
                 alt={`${subcategoryLabel} - Product ${i + 1}`}
                 className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-300 flex items-center justify-center">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <motion.span
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileHover={{ scale: 1.1 }}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 dark:bg-gray-800/90 rounded-full p-2.5 shadow-lg"
+                  className="bg-white/95 dark:bg-gray-800/95 rounded-full p-3 shadow-xl ring-2 ring-accent/30"
                 >
-                  <ZoomIn className="w-5 h-5 text-primary" strokeWidth={2} />
+                  <ZoomIn className="w-5 h-5 text-accent" strokeWidth={2.5} />
                 </motion.span>
               </div>
             </button>
@@ -76,9 +76,9 @@ export default function ProductImageGrid({
               type="button"
               onClick={closeLightbox}
               aria-label="Close"
-              className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+              className="absolute top-4 right-4 z-50 p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors ring-1 ring-white/20"
             >
-              <X className="w-6 h-6" />
+              <X className="w-6 h-6" strokeWidth={2} />
             </button>
 
             <motion.div
@@ -111,7 +111,7 @@ export default function ProductImageGrid({
                       prev === 0 ? images.length - 1 : prev - 1
                     );
                   }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors ring-1 ring-white/20"
                   aria-label="Previous image"
                 >
                   <svg
@@ -136,7 +136,7 @@ export default function ProductImageGrid({
                       prev === images.length - 1 ? 0 : prev + 1
                     );
                   }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors ring-1 ring-white/20"
                   aria-label="Next image"
                 >
                   <svg

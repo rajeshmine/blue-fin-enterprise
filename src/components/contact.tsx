@@ -26,13 +26,18 @@ const Contact = () => {
           </h2>
           <p className="text-[#2D3675] dark:text-gray-300 font-semibold mb-4 text-sm">{CONTACT.followUs}</p>
           <div className="flex gap-3">
-            {[Facebook, Instagram, Twitter, Linkedin].map((Icon, index) => (
+            {[
+              { Icon: Facebook, bg: "bg-[#1877F2]/10", color: "text-[#1877F2]", ring: "ring-[#1877F2]/20" },
+              { Icon: Instagram, bg: "bg-[#E4405F]/10", color: "text-[#E4405F]", ring: "ring-[#E4405F]/20" },
+              { Icon: Twitter, bg: "bg-[#1DA1F2]/10", color: "text-[#1DA1F2]", ring: "ring-[#1DA1F2]/20" },
+              { Icon: Linkedin, bg: "bg-[#0A66C2]/10", color: "text-[#0A66C2]", ring: "ring-[#0A66C2]/20" },
+            ].map(({ Icon, bg, color, ring }, index) => (
               <a
                 key={index}
                 href="#"
-                className="p-2 border border-gray-200 dark:border-gray-600 rounded-full text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors"
+                className={`p-2.5 rounded-xl ${bg} ring-1 ${ring} ${color} hover:scale-110 transition-all duration-300`}
               >
-                <Icon size={18} />
+                <Icon size={20} strokeWidth={2} />
               </a>
             ))}
           </div>

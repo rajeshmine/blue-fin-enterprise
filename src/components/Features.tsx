@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { Gem, Users, Truck } from "lucide-react";
 import { FEATURES } from "@/lib/content";
 
-const ICON_MAP = {
-  gem: Gem,
-  users: Users,
-  truck: Truck,
-} as const;
+const ICON_STYLES = [
+  { Icon: Gem, bg: "bg-violet-500/10", iconColor: "text-violet-600 dark:text-violet-400", ring: "ring-violet-500/20", hoverBg: "group-hover:bg-violet-500/20" },
+  { Icon: Users, bg: "bg-emerald-500/10", iconColor: "text-emerald-600 dark:text-emerald-400", ring: "ring-emerald-500/20", hoverBg: "group-hover:bg-emerald-500/20" },
+  { Icon: Truck, bg: "bg-amber-500/10", iconColor: "text-amber-600 dark:text-amber-400", ring: "ring-amber-500/20", hoverBg: "group-hover:bg-amber-500/20" },
+] as const;
 
 const container = {
   hidden: { opacity: 0 },
@@ -58,7 +58,8 @@ const Features = () => {
           className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 md:gap-8"
         >
           {FEATURES.items.map((feature, index) => {
-            const IconComponent = ICON_MAP[feature.iconKey];
+            const style = ICON_STYLES[index];
+            const IconComponent = style.Icon;
             return (
               <motion.article
                 key={feature.id}
@@ -67,14 +68,12 @@ const Features = () => {
                 className="group"
               >
                 <div className="h-full bg-white dark:bg-gray-800 rounded-2xl p-6 sm:p-8 shadow-lg dark:shadow-gray-900/50 border border-gray-100 dark:border-gray-700/80 transition-all duration-300 hover:shadow-xl hover:border-accent/20 dark:hover:border-accent/30 hover:shadow-accent/5">
-                  {/* Icon with gradient background */}
+                  {/* Icon with colored background */}
                   <div className="relative mb-5">
-                    <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br from-accent/15 to-accent/5 dark:from-accent/25 dark:to-accent/10 text-accent transition-all duration-300 group-hover:from-accent/25 group-hover:to-accent/15 dark:group-hover:from-accent/35 dark:group-hover:to-accent/20 group-hover:scale-110">
-                      {IconComponent && (
-                        <IconComponent size={28} strokeWidth={2} className="sm:w-8 sm:h-8" />
-                      )}
+                    <div className={`inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-xl ${style.bg} ${style.ring} ring-1 ${style.hoverBg} transition-all duration-300 group-hover:scale-110`}>
+                      <IconComponent size={28} strokeWidth={2} className={`sm:w-8 sm:h-8 ${style.iconColor}`} />
                     </div>
-                    <span className="absolute -top-1 -right-1 text-3xl font-bold text-accent/10 dark:text-accent/20 select-none">
+                    <span className="absolute -top-1 -right-1 text-3xl font-bold text-gray-300 dark:text-gray-600 select-none">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
