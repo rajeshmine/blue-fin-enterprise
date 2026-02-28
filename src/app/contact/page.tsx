@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
+import ContactForm from "@/components/ContactForm";
 
 export default function ContactPage() {
   return (
@@ -119,58 +120,7 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <form className="space-y-5">
-                <div>
-                  <label htmlFor="name" className="block text-white/90 text-sm font-medium mb-2">
-                    Your Name
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder="Enter your name"
-                    className="w-full px-4 py-3 bg-white/95 rounded-xl border-0 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary transition-shadow placeholder:text-gray-400"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-white/90 text-sm font-medium mb-2">
-                    Mobile Number
-                  </label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    placeholder="+91 00000 00000"
-                    className="w-full px-4 py-3 bg-white/95 rounded-xl border-0 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary transition-shadow placeholder:text-gray-400"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-white/90 text-sm font-medium mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="your@email.com"
-                    className="w-full px-4 py-3 bg-white/95 rounded-xl border-0 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary transition-shadow placeholder:text-gray-400"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-white/90 text-sm font-medium mb-2">
-                    Your Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={4}
-                    placeholder="How can we help you?"
-                    className="w-full px-4 py-3 bg-white/95 rounded-xl border-0 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary transition-shadow placeholder:text-gray-400 resize-none"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
-                >
-                  Submit Request
-                </button>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </div>
