@@ -54,11 +54,15 @@ export const ABOUT = {
 // FEATURES (Services highlights)
 // =============================================================================
 
-export const FEATURES = [
-  { id: 1, title: "Innovative Products", iconKey: "gem" },
-  { id: 2, title: "Team Of Experts", iconKey: "users" },
-  { id: 3, title: "Strong Supply Chain", iconKey: "truck" },
-] as const;
+export const FEATURES = {
+  eyebrow: "What We Offer",
+  title: "Our Core Strengths",
+  items: [
+    { id: 1, title: "Innovative Products", description: "Cutting-edge solutions built for industrial excellence.", iconKey: "gem" },
+    { id: 2, title: "Team Of Experts", description: "Skilled engineers dedicated to your success.", iconKey: "users" },
+    { id: 3, title: "Strong Supply Chain", description: "Reliable delivery across South India and beyond.", iconKey: "truck" },
+  ],
+} as const;
 
 // =============================================================================
 // PRODUCTS (Homepage products grid)
