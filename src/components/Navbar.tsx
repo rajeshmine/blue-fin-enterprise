@@ -268,7 +268,7 @@ export default function Navbar() {
       <div className="fixed top-0 left-0 h-1 bg-accent z-50" style={{ width: `${scrollProgress}%` }} />
 
       <nav
-        className={`fixed w-full z-50 transition-all duration-500 backdrop-blur-xl px-4 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-gray-900/95 dark:border-b dark:border-gray-800 ${
+        className={`sticky top-0 w-full z-50 transition-all duration-500 backdrop-blur-xl px-4 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-gray-900/95 dark:border-b dark:border-gray-800 ${
           scrolled ? "shadow-lg dark:shadow-gray-950/50" : "shadow-sm"
         }`}
       >
