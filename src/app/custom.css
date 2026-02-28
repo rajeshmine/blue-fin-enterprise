@@ -1,0 +1,7 @@
+.logo-image{
+    width: 60px !important;
+    height: 60px !important;
+    object-fit: contain;
+    object-position: center;
+    object-fit: contain;
+}
