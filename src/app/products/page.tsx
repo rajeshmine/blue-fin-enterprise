@@ -8,9 +8,9 @@ export const metadata = {
 
 export default function ProductsPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero header */}
-      <section className="bg-blue-950 pt-28 pb-16 px-6">
+      <section className="bg-blue-950 dark:bg-primary pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div className="h-1 w-14 bg-accent rounded-full shrink-0" />

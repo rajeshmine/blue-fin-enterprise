@@ -41,28 +41,28 @@ const Features = () => {
     {
       id: 1,
       title: "Innovative Products",
-      icon: <Gem size={40} className="text-red-600" />,
+      icon: <Gem size={40} className="text-red-600 dark:text-accent" />,
     },
     {
       id: 2,
       title: "Team Of Experts",
-      icon: <Users size={40} className="text-red-600" />,
+      icon: <Users size={40} className="text-red-600 dark:text-accent" />,
     },
     {
       id: 3,
       title: "Strong Supply Chain",
-      icon: <Truck size={40} className="text-red-600" />,
+      icon: <Truck size={40} className="text-red-600 dark:text-accent" />,
     },
   ];
 
   return (
     <div className="w-full">
       {/* Dark Navy Background Header */}
-      <div className="bg-[#00153D] h-24 w-full"></div>
+      <div className="bg-[#00153D] dark:bg-primary h-16 sm:h-20 md:h-24 w-full"></div>
 
       {/* Cards Container */}
-      <div className="max-w-6xl mx-auto px-4 -mt-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 -mt-8 sm:-mt-10 md:-mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {features.map((feature) => (
             <motion.div
               key={feature.id}
@@ -71,12 +71,12 @@ const Features = () => {
             >
               <div
                 key={feature.id}
-                className="bg-white p-8 flex flex-col items-center justify-center transition-transform hover:-translate-y-1 shadow-sm"
+                className="bg-white dark:bg-gray-800 p-6 sm:p-8 flex flex-col items-center justify-center transition-transform hover:-translate-y-1 shadow-sm dark:shadow-gray-900/50"
               >
                 <div className="mb-4">
                   {feature.icon}
                 </div>
-                <h3 className="text-[#00153D] font-bold text-lg text-center uppercase tracking-tight">
+                <h3 className="text-[#00153D] dark:text-gray-100 font-bold text-base sm:text-lg text-center uppercase tracking-tight">
                   {feature.title}
                 </h3>
               </div>

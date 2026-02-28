@@ -27,14 +27,14 @@ export default function ProductImageGrid({
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
         {images.map((img, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.05 }}
-            className="group relative aspect-square rounded-xl overflow-hidden border border-gray-100 bg-gray-50 shadow-sm hover:shadow-lg transition-shadow duration-300"
+            className="group relative aspect-square rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 shadow-sm hover:shadow-lg transition-shadow duration-300"
           >
             <button
               type="button"
@@ -51,7 +51,7 @@ export default function ProductImageGrid({
                 <motion.span
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileHover={{ scale: 1.1 }}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-2.5 shadow-lg"
+                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 dark:bg-gray-800/90 rounded-full p-2.5 shadow-lg"
                 >
                   <ZoomIn className="w-5 h-5 text-primary" strokeWidth={2} />
                 </motion.span>

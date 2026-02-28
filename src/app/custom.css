@@ -1,7 +1,27 @@
-.logo-image{
+.logo-image {
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Mobile logo - responsive */
+@media (max-width: 640px) {
+  .logo-image {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+@media (min-width: 641px) {
+  .logo-image {
     width: 60px !important;
     height: 60px !important;
-    object-fit: contain;
-    object-position: center;
-    object-fit: contain;
+  }
+}
+
+/* Swiper pagination in dark mode */
+.dark .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+.dark .swiper-pagination-bullet-active {
+  background: rgb(229, 57, 53) !important;
 }

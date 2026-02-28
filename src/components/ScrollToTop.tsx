@@ -34,7 +34,7 @@ export default function ScrollToTop() {
           transition={{ duration: 0.3, ease: "easeOut" }}
           onClick={scrollToTop}
           aria-label="Scroll to top"
-          className="fixed bottom-8 right-8 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-blue-900 text-white shadow-lg shadow-accent/30 hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-white transition-colors"
+          className="fixed bottom-6 right-4 sm:bottom-8 sm:right-8 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-blue-900 dark:bg-primary text-white shadow-lg shadow-accent/30 hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 transition-colors touch-manipulation"
           whileHover={{ scale: 1.1, y: -2 }}
           whileTap={{ scale: 0.95 }}
         >

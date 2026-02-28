@@ -93,10 +93,10 @@ export default function Hero() {
         aria-hidden
       />
 
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-20 px-4 sm:px-6 lg:px-8 z-10 text-white">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 xl:gap-20 px-4 sm:px-6 lg:px-8 z-10 text-white">
         {/* Content column */}
         <div className="hero-text flex flex-col justify-center order-2 lg:order-1 text-center lg:text-left">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-semibold tracking-tight leading-[1.15] sm:leading-tight">
+          <h1 className="text-2xl min-[480px]:text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-semibold tracking-tight leading-[1.2] sm:leading-tight">
             Leading Manufacturers Of{" "}
             <span className="text-accent">Material Handling</span> & Assembly
             Solutions
@@ -110,7 +110,7 @@ export default function Hero() {
           <div className="hero-cta mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Link href="/contact">
               <motion.span
-                className="inline-block bg-accent hover:bg-accent/90 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-glow font-semibold text-primary transition-colors"
+                className="inline-block bg-accent hover:bg-accent/90 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-glow font-semibold text-primary transition-colors w-full sm:w-auto text-center touch-manipulation"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -119,7 +119,7 @@ export default function Hero() {
             </Link>
             <Link href="/#products">
               <motion.span
-                className="inline-block border-2 border-white/30 hover:border-white/50 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-white/90 hover:text-white transition-all"
+                className="inline-block border-2 border-white/30 hover:border-white/50 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-white/90 hover:text-white transition-all w-full sm:w-auto text-center touch-manipulation"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
               >

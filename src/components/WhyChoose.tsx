@@ -27,18 +27,18 @@ export default function WhyChoose() {
   ];
 
   return (
-    <section className="py-24 bg-[#1e2a5e] text-white text-center">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-16">
+    <section className="py-16 sm:py-20 md:py-24 bg-[#1e2a5e] dark:bg-primary/90 text-white text-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-10 sm:mb-14 md:mb-16">
           Why Choose Us
         </h2>
 
-        <div className="grid md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
           {items.map((item, i) => (
             <motion.div
               key={i}
               whileHover={{ scale: 1.05 }}
-              className="p-8 rounded-xl  shadow-lg"
+              className="p-6 sm:p-8 rounded-xl shadow-lg"
             >
 
               <div className="mt-1 mb-4 flex justify-center">{item.icon}</div>

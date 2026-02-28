@@ -45,7 +45,7 @@ export default async function ProductSubcategoryPage({ params }: Props) {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <ProductPageClient
         slug={slug}
         subcategory={subcategory}

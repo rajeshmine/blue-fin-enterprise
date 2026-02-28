@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { productCategories, getProductHref } from "@/lib/products";
+import ThemeToggle from "@/components/ThemeToggle";
 
 type MenuItem = {
   label: string;
@@ -31,6 +32,9 @@ function DropdownMenu({
   expandedMenus,
   toggleMenu,
   onKeyDown,
+  onMobileLinkClick,
+  onDesktopLinkClick,
+  asPanel = false,
 }: {
   items: MenuItem[];
   level?: number;
@@ -38,14 +42,17 @@ function DropdownMenu({
   expandedMenus?: Set<string>;
   toggleMenu?: (key: string) => void;
   onKeyDown?: (e: KeyboardEvent<HTMLButtonElement>, key: string) => void;
+  onMobileLinkClick?: () => void;
+  onDesktopLinkClick?: () => void;
+  asPanel?: boolean;
 }) {
   return (
     <ul
       className={
         isMobile
-          ? "pl-4 border-l border-gray-300"
-          : level === 0
-            ? "absolute bg-white shadow-lg border border-gray-200 rounded-md min-w-[220px] z-50 top-full left-0 hidden group-hover:block"
+          ? "w-full pl-3 sm:pl-4 ml-0 sm:ml-2 border-l-2 border-gray-200 dark:border-gray-600"
+          : level === 0 && !asPanel
+            ? "absolute bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md min-w-[220px] z-50 top-full left-0 hidden group-hover:block"
             : "block w-full py-1"
       }
       role={level === 0 && !isMobile ? "menu" : undefined}
@@ -57,21 +64,25 @@ function DropdownMenu({
 
         if (isMobile) {
           return (
-            <li key={key} className="border-b last:border-b-0">
+            <li key={key} className="border-b border-gray-100 dark:border-gray-700 last:border-b-0">
               {hasSubmenu ? (
                 <>
                   <button
                     aria-expanded={isExpanded}
                     aria-controls={`${key}-submenu`}
                     id={`${key}-button`}
-                    onClick={() => toggleMenu?.(key)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      toggleMenu?.(key);
+                    }}
                     onKeyDown={(e) => onKeyDown?.(e, key)}
-                    className="w-full flex justify-between items-center px-4 py-3 font-semibold text-primary hover:bg-gray-100 rounded"
+                    className="w-full flex justify-between items-center px-3 sm:px-4 py-3.5 font-semibold text-primary dark:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 dark:active:bg-gray-600 rounded-lg touch-manipulation min-h-[44px] text-left text-sm sm:text-base"
                     type="button"
                   >
                     {item.label}
                     <svg
-                      className={`w-5 h-5 ml-2 transition-transform ${
+                      className={`w-5 h-5 ml-2 shrink-0 transition-transform ${
                         isExpanded ? "rotate-90" : "rotate-0"
                       }`}
                       fill="none"
@@ -106,6 +117,7 @@ function DropdownMenu({
                           expandedMenus={expandedMenus}
                           toggleMenu={toggleMenu}
                           onKeyDown={onKeyDown}
+                          onMobileLinkClick={onMobileLinkClick}
                         />
                       </motion.div>
                     )}
@@ -114,7 +126,8 @@ function DropdownMenu({
               ) : (
                 <Link
                   href={item.href || "#"}
-                  className="block px-4 py-3 text-primary hover:bg-gray-100 rounded"
+                  className="block px-3 sm:px-4 py-3.5 text-primary dark:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 dark:active:bg-gray-600 rounded-lg touch-manipulation min-h-[44px] text-sm sm:text-base break-words"
+                  onClick={onMobileLinkClick}
                 >
                   {item.label}
                 </Link>
@@ -132,7 +145,7 @@ function DropdownMenu({
               {hasSubmenu ? (
                 <>
                   <button
-                    className="w-full px-4 py-2 text-left hover:bg-gray-100 flex justify-between items-center font-semibold text-gray-800 hover:text-accent"
+                    className="w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 flex justify-between items-center font-semibold text-gray-800 dark:text-gray-200 hover:text-accent"
                     aria-haspopup="true"
                     aria-expanded="false"
                     type="button"
@@ -150,15 +163,16 @@ function DropdownMenu({
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
-                  <div className="group-hover/level1:block hidden absolute top-0 left-[calc(100%+4px)] bg-white shadow-lg border border-gray-200 rounded-md min-w-[220px] max-h-[70vh] overflow-y-auto z-50">
-                    <DropdownMenu items={item.submenu!} level={level + 1} />
+                  <div className="group-hover/level1:block hidden absolute top-0 left-full ml-1 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md min-w-[200px] max-w-[280px] sm:max-w-[320px] max-h-[70vh] overflow-y-auto z-[60]">
+                    <DropdownMenu items={item.submenu!} level={level + 1} onDesktopLinkClick={onDesktopLinkClick} />
                   </div>
                 </>
               ) : (
                 <Link
                   href={item.href || "#"}
-                  className="block px-4 py-2 hover:bg-gray-100 font-semibold text-gray-800 hover:text-accent"
+                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 font-semibold text-gray-800 dark:text-gray-200 hover:text-accent"
                   role="menuitem"
+                  onClick={onDesktopLinkClick}
                 >
                   {item.label}
                 </Link>
@@ -174,7 +188,22 @@ function DropdownMenu({
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [desktopProductsOpen, setDesktopProductsOpen] = useState(false);
   const [expandedMenus, setExpandedMenus] = useState<Set<string>>(new Set());
+  const desktopProductsRef = useRef<HTMLDivElement>(null);
+
+  // Close desktop products dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (desktopProductsRef.current && !desktopProductsRef.current.contains(e.target as Node)) {
+        setDesktopProductsOpen(false);
+      }
+    };
+    if (desktopProductsOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [desktopProductsOpen]);
 
   // Scroll progress bar state
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -192,6 +221,18 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   function toggleMenu(key: string) {
     setExpandedMenus((prev) => {
@@ -226,14 +267,14 @@ export default function Navbar() {
       <div className="fixed top-0 left-0 h-1 bg-accent z-50" style={{ width: `${scrollProgress}%` }} />
 
       <nav
-        className={`fixed w-full z-50 transition-all duration-500 backdrop-blur-xl px-6 py-3 bg-white ${
-          scrolled ? "shadow-lg" : "shadow-sm"
+        className={`fixed w-full z-50 transition-all duration-500 backdrop-blur-xl px-4 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-gray-900/95 dark:border-b dark:border-gray-800 ${
+          scrolled ? "shadow-lg dark:shadow-gray-950/50" : "shadow-sm"
         }`}
       >
-        <div className="max-w-7xl mx-auto flex justify-between items-center relative">
+        <div className="max-w-7xl mx-auto flex justify-between items-center relative gap-2">
 
           {/* Logo + Text */}
-          <Link href="/" className="flex items-center gap-4">
+          <Link href="/" className="flex items-center gap-2 sm:gap-4 min-w-0 flex-shrink">
             <Image
               src="/images/logo.png"
               alt="Blue Fin Engineering Logo"
@@ -242,11 +283,11 @@ export default function Navbar() {
               priority
               className="logo-image"
             />
-            <div className="flex flex-col leading-tight">
-              <span className="text-2xl font-extrabold text-primary tracking-wide">
+            <div className="flex flex-col leading-tight min-w-0">
+              <span className="text-lg sm:text-2xl font-extrabold text-primary tracking-wide truncate">
                 BLUEFIN
               </span>
-              <span className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
+              <span className="text-[10px] sm:text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider truncate max-w-[120px] sm:max-w-none">
                 ENGINEERING ENTERPRISES
               </span>
             </div>
@@ -264,16 +305,18 @@ export default function Navbar() {
                 About
               </Link>
             </li>
-            <li className="relative group">
+            <li className="relative">
+            <div ref={desktopProductsRef} className="relative">
               <button
                 aria-haspopup="true"
-                aria-expanded="false"
+                aria-expanded={desktopProductsOpen}
+                onClick={() => setDesktopProductsOpen((v) => !v)}
                 className="flex items-center gap-1 hover:text-accent transition font-semibold text-primary"
                 type="button"
               >
                 Products
                 <svg
-                  className="w-4 h-4 transition-transform group-hover:rotate-180"
+                  className={`w-4 h-4 transition-transform ${desktopProductsOpen ? "rotate-180" : ""}`}
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
@@ -283,7 +326,14 @@ export default function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <DropdownMenu items={productsMenu} />
+              {desktopProductsOpen && (
+                <div className="absolute left-0 top-full pt-1 z-50">
+                  <div className="bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md min-w-[220px] overflow-visible">
+                    <DropdownMenu items={productsMenu} asPanel onDesktopLinkClick={() => setDesktopProductsOpen(false)} />
+                  </div>
+                </div>
+              )}
+            </div>
             </li>
             <li>
               <Link href="/contact" className="hover:text-accent transition">
@@ -292,9 +342,12 @@ export default function Navbar() {
             </li>
           </ul>
 
-          {/* Mobile hamburger button */}
-          <button
-            className="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+          {/* Theme toggle + Mobile hamburger - flex for proper spacing */}
+          <div className="flex items-center gap-1 sm:gap-2">
+            <ThemeToggle />
+            {/* Mobile hamburger button */}
+            <button
+              className="md:hidden p-2.5 -mr-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 active:bg-gray-100 dark:active:bg-gray-800 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
             onClick={() => setMobileMenuOpen((open) => !open)}
@@ -322,7 +375,8 @@ export default function Navbar() {
                 />
               )}
             </svg>
-          </button>
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu with accordion */}
@@ -333,47 +387,58 @@ export default function Navbar() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="md:hidden overflow-hidden bg-white border-t border-gray-300"
+              className="md:hidden overflow-hidden bg-white dark:bg-gray-900 border-t border-gray-300 dark:border-gray-700"
             >
-              <ul className="flex flex-col gap-1 p-4 text-primary font-semibold">
-                <li>
-                  <Link
-                    href="/"
-                    className="block py-3 hover:text-accent"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/#about"
-                    className="block py-3 hover:text-accent"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <DropdownMenu
-                    items={productsMenu}
-                    level={0}
-                    isMobile
-                    expandedMenus={expandedMenus}
-                    toggleMenu={toggleMenu}
-                    onKeyDown={onKeyDown}
-                  />
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="block py-3 hover:text-accent"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Contact
-                  </Link>
-                </li>
-              </ul>
+              <nav
+                className="max-h-[70vh] overflow-y-auto overscroll-contain"
+                aria-label="Mobile navigation"
+              >
+                <ul className="flex flex-col gap-0 p-4 pb-6 text-primary font-semibold">
+                  <li>
+                    <Link
+                      href="/"
+                      className="block py-3.5 px-3 -mx-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent active:bg-gray-200 dark:active:bg-gray-700 transition-colors touch-manipulation"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/#about"
+                      className="block py-3.5 px-3 -mx-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent active:bg-gray-200 dark:active:bg-gray-700 transition-colors touch-manipulation"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <div className="pt-1 pb-2">
+                      <p className="px-3 py-2 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                        Products
+                      </p>
+                      <DropdownMenu
+                        items={productsMenu}
+                        level={0}
+                        isMobile
+                        expandedMenus={expandedMenus}
+                        toggleMenu={toggleMenu}
+                        onKeyDown={onKeyDown}
+                        onMobileLinkClick={() => setMobileMenuOpen(false)}
+                      />
+                    </div>
+                  </li>
+                  <li>
+                    <Link
+                      href="/contact"
+                      className="block py-3.5 px-3 -mx-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent active:bg-gray-200 dark:active:bg-gray-700 transition-colors touch-manipulation"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
             </motion.div>
           )}
         </AnimatePresence>

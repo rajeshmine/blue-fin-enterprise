@@ -13,13 +13,13 @@ export default function ClientsCarousel() {
     "cl18.png",
   ];
   return (
-    <section className="py-20 bg-gray-100">
-      <div className="max-w-7xl mx-auto px-6 mb-12">
+    <section className="py-14 sm:py-16 md:py-20 bg-gray-100 dark:bg-gray-800 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12">
         <div className="text-center">
-          <span className="inline-block text-sm font-semibold text-accent uppercase tracking-[0.2em] mb-3">
+          <span className="inline-block text-xs sm:text-sm font-semibold text-accent uppercase tracking-[0.15em] sm:tracking-[0.2em] mb-2 sm:mb-3">
             Our Happy Clients
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-primary tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-primary dark:text-gray-100 tracking-tight">
             Our Valuable <span className="text-accent">Clients</span>
           </h2>
           <div className="flex justify-center mt-4">
@@ -29,15 +29,21 @@ export default function ClientsCarousel() {
       </div>
       <Swiper
         modules={[Autoplay, Pagination]}
-        slidesPerView={5}
+        slidesPerView={2}
+        spaceBetween={16}
         loop
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        className="!pb-12"
+        breakpoints={{
+          1024: { slidesPerView: 5, spaceBetween: 24 },
+          480: { slidesPerView: 3, spaceBetween: 20 },
+          640: { slidesPerView: 4, spaceBetween: 24 },
+        }}
+        className="!pb-12 !px-2 sm:!px-4"
       >
         {clients.map((logo, i) => (
           <SwiperSlide key={i}>
-            <img src={`/images/clients/${logo}`} className="mx-auto h-16" alt={`Client ${i + 1}`} />
+            <img src={`/images/clients/${logo}`} className="mx-auto h-12 sm:h-14 md:h-16 w-auto object-contain" alt={`Client ${i + 1}`} />
           </SwiperSlide>
         ))}
       </Swiper>

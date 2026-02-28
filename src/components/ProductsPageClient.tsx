@@ -6,7 +6,7 @@ import { productCategories, getProductHref } from "@/lib/products";
 
 export default function ProductsPageClient() {
   return (
-    <section className="max-w-7xl mx-auto px-6 -mt-8 pb-24">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 -mt-6 sm:-mt-8 pb-16 sm:pb-24">
       <div className="space-y-12">
         {productCategories.map((category, catIndex) => (
           <motion.div
@@ -16,14 +16,14 @@ export default function ProductsPageClient() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-            className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden scroll-mt-24"
+            className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-950/50 border border-gray-100 dark:border-gray-700 overflow-hidden scroll-mt-24"
           >
-            <div className="bg-primary/5 px-6 py-4 border-b border-gray-100">
+            <div className="bg-primary/5 dark:bg-primary/10 px-6 py-4 border-b border-gray-100 dark:border-gray-700">
               <h2 className="text-xl font-bold text-primary">
                 {category.label}
               </h2>
             </div>
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {category.submenu.map((sub, subIndex) => (
                   <motion.div
@@ -35,7 +35,7 @@ export default function ProductsPageClient() {
                   >
                     <Link
                       href={getProductHref(sub.slug)}
-                      className="group flex items-center gap-4 p-4 rounded-xl border border-gray-100 hover:border-accent/30 hover:bg-accent/5 transition-all duration-300 hover:shadow-md"
+                      className="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-accent/30 hover:bg-accent/5 dark:hover:bg-accent/10 transition-all duration-300 hover:shadow-md touch-manipulation"
                     >
                       <div className="shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-accent/10 transition-colors duration-300">
                         <svg
@@ -52,7 +52,7 @@ export default function ProductsPageClient() {
                           />
                         </svg>
                       </div>
-                      <span className="font-medium text-primary group-hover:text-accent transition-colors flex-1 min-w-0">
+                      <span className="font-medium text-primary dark:text-gray-200 group-hover:text-accent transition-colors flex-1 min-w-0">
                         {sub.label}
                       </span>
                       <svg

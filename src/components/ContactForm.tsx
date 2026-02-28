@@ -76,7 +76,7 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           disabled={status === "sending"}
-          className="w-full px-4 py-3 bg-white/95 rounded-xl border-0 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary transition-shadow placeholder:text-gray-400 disabled:opacity-70"
+          className="w-full px-4 py-3 min-h-[48px] bg-white/95 dark:bg-gray-800/95 rounded-xl border-0 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary dark:focus:ring-offset-gray-800 transition-shadow placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-gray-100 disabled:opacity-70 text-base touch-manipulation"
         />
       </div>
       <div>
@@ -91,7 +91,7 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           disabled={status === "sending"}
-          className="w-full px-4 py-3 bg-white/95 rounded-xl border-0 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary transition-shadow placeholder:text-gray-400 disabled:opacity-70"
+          className="w-full px-4 py-3 min-h-[48px] bg-white/95 dark:bg-gray-800/95 rounded-xl border-0 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary dark:focus:ring-offset-gray-800 transition-shadow placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-gray-100 disabled:opacity-70 text-base touch-manipulation"
         />
       </div>
       <div>
@@ -106,7 +106,7 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           disabled={status === "sending"}
-          className="w-full px-4 py-3 bg-white/95 rounded-xl border-0 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary transition-shadow placeholder:text-gray-400 disabled:opacity-70"
+          className="w-full px-4 py-3 min-h-[48px] bg-white/95 dark:bg-gray-800/95 rounded-xl border-0 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary dark:focus:ring-offset-gray-800 transition-shadow placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-gray-100 disabled:opacity-70 text-base touch-manipulation"
         />
       </div>
       <div>
@@ -121,7 +121,7 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           disabled={status === "sending"}
-          className="w-full px-4 py-3 bg-white/95 rounded-xl border-0 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary transition-shadow placeholder:text-gray-400 resize-none disabled:opacity-70"
+          className="w-full px-4 py-3 min-h-[120px] bg-white/95 dark:bg-gray-800/95 rounded-xl border-0 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary dark:focus:ring-offset-gray-800 transition-shadow placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-gray-100 resize-none disabled:opacity-70 text-base touch-manipulation"
         />
       </div>
 
@@ -139,7 +139,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full py-4 bg-accent hover:bg-accent/90 disabled:bg-accent/70 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:cursor-not-allowed"
+        className="w-full py-3.5 sm:py-4 min-h-[48px] bg-accent hover:bg-accent/90 disabled:bg-accent/70 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:cursor-not-allowed touch-manipulation active:scale-[0.98]"
       >
         {status === "sending" ? "Sending..." : "Submit Request"}
       </button>
