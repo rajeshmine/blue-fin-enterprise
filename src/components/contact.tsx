@@ -24,8 +24,8 @@ const Contact = () => {
           <h2 className="text-primary font-bold text-base sm:text-lg mb-4 sm:mb-6">
             {CONTACT.companyName}
           </h2>
-          <p className="text-[#2D3675] dark:text-gray-300 font-semibold mb-4 text-sm">{CONTACT.followUs}</p>
-          <div className="flex gap-3">
+          {/* <p className="text-[#2D3675] dark:text-gray-300 font-semibold mb-4 text-sm">{CONTACT.followUs}</p> */}
+          {/* <div className="flex gap-3">
             {[
               { Icon: Facebook, bg: "bg-[#1877F2]/10", color: "text-[#1877F2]", ring: "ring-[#1877F2]/20" },
               { Icon: Instagram, bg: "bg-[#E4405F]/10", color: "text-[#E4405F]", ring: "ring-[#E4405F]/20" },
@@ -40,7 +40,7 @@ const Contact = () => {
                 <Icon size={20} strokeWidth={2} />
               </a>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* Column 2: Reach Us */}
