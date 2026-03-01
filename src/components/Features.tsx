@@ -25,28 +25,24 @@ const item = {
 
 const Features = () => {
   return (
-    <section className="relative overflow-hidden">
-      {/* Dark header band with gradient */}
-      <div className="relative bg-gradient-to-b from-[#00153D] via-[#001a4d] to-[#00153D] dark:from-primary dark:via-primary/95 dark:to-primary h-20 sm:h-24 md:h-28 w-full">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(229,57,53,0.08),transparent)]" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-      </div>
-
-      {/* Content */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 -mt-10 sm:-mt-12 md:-mt-14">
-        {/* Section label - sits over dark header */}
+    <section className="relative py-14 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-900/50 overflow-x-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 min-w-0">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-6 sm:mb-8 text-white"
+          viewport={{ once: true, amount: 0.1 }}
+          className="text-center mb-8 sm:mb-10 md:mb-12"
         >
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <span className="inline-block text-xs sm:text-sm font-semibold text-accent uppercase tracking-[0.15em] sm:tracking-[0.2em] mb-2 sm:mb-3">
             {FEATURES.eyebrow}
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold mt-1">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary dark:text-gray-100 tracking-tight">
             {FEATURES.title}
           </h2>
+          <div className="flex justify-center mt-4">
+            <div className="h-1 w-16 bg-accent rounded-full" />
+          </div>
         </motion.div>
 
         {/* Cards */}

@@ -5,8 +5,8 @@ import { CONTACT } from "@/lib/content";
 
 const Contact = () => {
   return (
-    <footer className="bg-white dark:bg-gray-900 pt-12 sm:pt-16 font-sans overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-10 sm:pb-12 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
+    <footer className="bg-white dark:bg-gray-900 pt-12 sm:pt-16 font-sans overflow-x-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-10 sm:pb-12 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12 min-w-0">
 
         {/* Column 1: Brand & Socials */}
         <div className="flex flex-col items-center text-center">
@@ -73,8 +73,8 @@ const Contact = () => {
         <div className="text-[#2D3675] dark:text-gray-300">
           <h3 className="font-bold text-lg sm:text-xl mb-4 sm:mb-6">{CONTACT.getDirections}</h3>
 
-          <div className="w-full min-h-[200px] sm:min-h-[250px] bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded overflow-hidden">
-            <iframe src={CONTACT.mapEmbedUrl} width="100%" height="250" style={{ border: 0, minHeight: "200px" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title={`${CONTACT.companyName} Location Map`}></iframe>
+          <div className="w-full min-w-0 min-h-[200px] sm:min-h-[250px] bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded overflow-hidden">
+            <iframe src={CONTACT.mapEmbedUrl} width="100%" height="250" style={{ border: 0, minHeight: "200px", maxWidth: "100%" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title={`${CONTACT.companyName} Location Map`}></iframe>
           </div>
         </div>
       </div>

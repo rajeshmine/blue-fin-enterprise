@@ -22,6 +22,7 @@ export default function ClientsCarousel() {
           </div>
         </div>
       </div>
+      <div className="overflow-hidden w-full">
       <Swiper
         modules={[Autoplay, Pagination]}
         slidesPerView={2}
@@ -42,6 +43,7 @@ export default function ClientsCarousel() {
           </SwiperSlide>
         ))}
       </Swiper>
+      </div>
     </section>
   );
 }

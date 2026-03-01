@@ -13,8 +13,8 @@ const ICON_STYLES = [
 
 export default function WhyChoose() {
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-[#1e2a5e] dark:bg-primary/90 text-white text-center">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section className="py-16 sm:py-20 md:py-24 bg-[#1e2a5e] dark:bg-primary/90 text-white text-center overflow-x-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 min-w-0">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-10 sm:mb-14 md:mb-16">
           {WHY_CHOOSE_US.title}
         </h2>

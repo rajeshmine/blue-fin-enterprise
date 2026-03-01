@@ -5,8 +5,8 @@ import { ABOUT } from "@/lib/content";
 
 export default function About() {
   return (
-    <section id="about" className="py-16 sm:py-20 md:py-24 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center px-4 sm:px-6">
+    <section id="about" className="py-16 sm:py-20 md:py-24 bg-white dark:bg-gray-900 overflow-x-hidden">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center px-4 sm:px-6 min-w-0">
 
         <motion.img
           src={ABOUT.image.src}

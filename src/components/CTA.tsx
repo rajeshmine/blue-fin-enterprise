@@ -11,7 +11,7 @@ export default function CTA() {
   );
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-gray-50 dark:bg-gray-800 text-center px-4 sm:px-6">
+    <section className="py-16 sm:py-20 md:py-24 bg-gray-50 dark:bg-gray-800 text-center px-4 sm:px-6 overflow-x-hidden">
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-primary dark:text-gray-100">
         {CTA_CONTENT.title}
       </h2>

@@ -9,7 +9,7 @@ import Contact from "@/components/contact";
 
 export default function Home() {
   return (
-    <>
+    <main className="overflow-x-hidden min-w-0">
       <Hero />
       <Features />
       <About />
@@ -18,6 +18,6 @@ export default function Home() {
       <ClientsCarousel />
       <CTA />
       <Contact />
-    </>
+    </main>
   );
 }
